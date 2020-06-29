@@ -9,11 +9,12 @@ import org.springframework.stereotype.Repository;
 import com.food.domain.model.Cozinha;
 
 @Repository
-public interface CozinhaRepository extends JpaRepository<Cozinha, Long>{
+public interface CozinhaRepository extends JpaRepository<Cozinha, Long> {
 
 	List<Cozinha> findTodasByNome(String nome);
+
+	Optional<Cozinha> findByNome(String nome);
 	
-	Optional
-	<Cozinha> findByNome(String nome);
-	
+	boolean existsByNome(String nome);
+
 }
