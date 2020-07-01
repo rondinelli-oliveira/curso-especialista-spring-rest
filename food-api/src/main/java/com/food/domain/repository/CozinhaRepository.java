@@ -10,10 +10,10 @@ import com.food.domain.model.Cozinha;
 @Repository
 public interface CozinhaRepository extends CustomJpaRepository<Cozinha, Long> {
 
-	List<Cozinha> findTodasByNome(String nome);
-
+	List<Cozinha> findTodasByNomeContaining(String nome);
+	
 	Optional<Cozinha> findByNome(String nome);
 	
 	boolean existsByNome(String nome);
-
+	
 }

@@ -23,11 +23,11 @@ public class TesteController {
 	
 	@Autowired
 	private RestauranteRepository restauranteRepository;
-//	
-//	@GetMapping("/cozinhas/por-nome")
-//	public List<Cozinha> cozinhasPorNome(String nome) {
-//		return cozinhaRepository.findTodasByNomeContaining(nome);
-//	}
+	
+	@GetMapping("/cozinhas/por-nome")
+	public List<Cozinha> cozinhasPorNome(String nome) {
+		return cozinhaRepository.findTodasByNomeContaining(nome);
+	}
 	
 	@GetMapping("/cozinhas/unica-por-nome")
 	public Optional<Cozinha> cozinhaPorNome(String nome) {
@@ -44,11 +44,11 @@ public class TesteController {
 		return cozinhaRepository.buscarPrimeiro();
 	}
 	
-//	@GetMapping("/restaurantes/por-taxa-frete")
-//	public List<Restaurante> restaurantesPorTaxaFrete(
-//			BigDecimal taxaInicial, BigDecimal taxaFinal) {
-//		return restauranteRepository.queryByTaxaFreteBetween(taxaInicial, taxaFinal);
-//	}
+	@GetMapping("/restaurantes/por-taxa-frete")
+	public List<Restaurante> restaurantesPorTaxaFrete(
+			BigDecimal taxaInicial, BigDecimal taxaFinal) {
+		return restauranteRepository.queryByTaxaFreteBetween(taxaInicial, taxaFinal);
+	}
 	
 	@GetMapping("/restaurantes/por-nome")
 	public List<Restaurante> restaurantesPorTaxaFrete(

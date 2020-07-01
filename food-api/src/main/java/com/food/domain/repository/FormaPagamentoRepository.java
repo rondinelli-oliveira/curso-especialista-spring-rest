@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.food.domain.model.FormaPagamento;
 
 @Repository
-public interface FormaPagamentoRepository extends JpaRepository<FormaPagamento, Long>{
-    
-}    
+public interface FormaPagamentoRepository extends JpaRepository<FormaPagamento, Long> {
+
+}
