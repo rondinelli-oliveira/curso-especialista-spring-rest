@@ -83,7 +83,7 @@ public class CozinhaController {
 //		}
 //	}
 	
-	@DeleteMapping("/{cidadeId}")
+	@DeleteMapping("/{cozinhaId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long cozinhaId) {
 		cadastroCozinha.excluir(cozinhaId);
