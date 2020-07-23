@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.algaworks.algafood.domain.exception.EstadoNaoEncontradoException;
+import com.food.domain.exception.EstadoNaoEncontradoException;
 import com.food.domain.exception.NegocioException;
 import com.food.domain.model.Cidade;
 import com.food.domain.repository.CidadeRepository;
