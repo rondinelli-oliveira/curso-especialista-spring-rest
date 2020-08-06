@@ -17,7 +17,7 @@ import com.food.domain.service.CadastroCozinhaService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CadastroCozinhaIntegrationTests {
+public class CadastroCozinhaIntegrationIT {
 
 	@Autowired
 	private CadastroCozinhaService cadastroCozinha;
