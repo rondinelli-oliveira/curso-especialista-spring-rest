@@ -13,9 +13,9 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.ResourceUtils;
 
 import com.food.api.util.DatabaseCleaner;
+import com.food.api.util.ResourceUtils;
 import com.food.domain.model.Cozinha;
 import com.food.domain.repository.CozinhaRepository;
 
