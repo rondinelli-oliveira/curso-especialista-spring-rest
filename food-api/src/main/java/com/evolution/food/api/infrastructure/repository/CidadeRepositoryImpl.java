@@ -38,4 +38,5 @@ public class CidadeRepositoryImpl implements CidadeRepository {
         cidade = buscar(cidade.getId());
         manager.remove(cidade);
     }
+
 }

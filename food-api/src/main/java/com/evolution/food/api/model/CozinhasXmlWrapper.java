@@ -24,10 +24,10 @@ import java.util.List;
 @Data
 public class CozinhasXmlWrapper {
 
-	@JsonProperty("cozinha")
+    @JsonProperty("cozinha")
 //	@JacksonXmlProperty(localName = "cozinha")
-	@JacksonXmlElementWrapper(useWrapping = false)
-	@NonNull
-	private List<Cozinha> cozinhas;
-	
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @NonNull
+    private List<Cozinha> cozinhas;
+
 }
