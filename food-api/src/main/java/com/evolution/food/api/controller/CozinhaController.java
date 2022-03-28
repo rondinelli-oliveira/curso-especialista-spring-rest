@@ -32,6 +32,7 @@ public class CozinhaController {
         return new CozinhasXmlWrapper(cozinhaRepository.listar());
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public ResponseEntity<Cozinha> listarPorId(@PathVariable Long id) {
         Cozinha cozinha = cozinhaRepository.buscar(id);
