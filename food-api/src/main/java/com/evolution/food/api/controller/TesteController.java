@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("teste")
+@RequestMapping("/teste")
 public class TesteController {
 
     @Autowired
     private CozinhaRepository cozinhaRepository;
 
-    @GetMapping("/cozinhas/por-nome")
-    public List<Cozinha> consultarPorNome(@RequestParam("nome") String nome) {
-        return cozinhaRepository.consultarPorNome(nome);
-    }
+//	@GetMapping("/cozinhas/por-nome")
+//	public List<Cozinha> cozinhasPorNome(@RequestParam("nome") String nome) {
+//		return cozinhaRepository.consultarPorNome(nome);
+//	}
+
 }
