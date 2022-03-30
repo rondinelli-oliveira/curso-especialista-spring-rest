@@ -1,17 +1,8 @@
 package com.evolution.food.api.domain.repository;
 
 import com.evolution.food.api.domain.model.FormaPagamento;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface FormaPagamentoRepository {
-
-    List<FormaPagamento> listar();
-
-    FormaPagamento buscar(Long id);
-
-    FormaPagamento salvar(FormaPagamento formaPagamento);
-
-    void remover(FormaPagamento formaPagamento);
+public interface FormaPagamentoRepository extends JpaRepository<FormaPagamento, Long> {
 
 }
