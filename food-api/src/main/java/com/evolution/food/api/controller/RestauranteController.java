@@ -34,6 +34,7 @@ public class RestauranteController {
         if (restaurante != null) {
             return ResponseEntity.ok(restaurante);
         }
+
         return ResponseEntity.notFound().build();
     }
 
@@ -61,6 +62,7 @@ public class RestauranteController {
                 restauranteAtual = restauranteService.salvar(restauranteAtual);
                 return ResponseEntity.ok(restauranteAtual);
             }
+
             return ResponseEntity.notFound().build();
 
         } catch (EntidadeNaoEncontradaException e) {
