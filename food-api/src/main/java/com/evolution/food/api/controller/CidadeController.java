@@ -33,7 +33,7 @@ public class CidadeController {
     public ResponseEntity<Cidade> buscar(@PathVariable Long id) {
         Optional<Cidade> cidade = cidadeRepository.findById(id);
 
-        if (cidade.isPresent()) {
+        if (cidade != null) {
             return ResponseEntity.ok(cidade.get());
         }
 
@@ -56,6 +56,9 @@ public class CidadeController {
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Cidade cidade) {
         try {
+            // Podemos usar o orElse(null) também, que retorna a instância de cidade
+            // dentro do Optional, ou null, caso ele esteja vazio,
+            // mas nesse caso, temos a responsabilidade de tomar cuidado com NullPointerException
             Cidade cidadeAtual = cidadeRepository.findById(id).orElse(null);
 
             if (cidadeAtual != null) {
