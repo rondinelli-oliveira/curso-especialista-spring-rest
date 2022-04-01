@@ -29,9 +29,9 @@ public class EstadoController {
         return estadoRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Estado> buscar(@PathVariable Long id) {
-        Optional<Estado> estado = estadoRepository.findById(id);
+    @GetMapping("/{estadoId}")
+    public ResponseEntity<Estado> buscar(@PathVariable Long estadoId) {
+        Optional<Estado> estado = estadoRepository.findById(estadoId);
 
         if (estado.isPresent()) {
             return ResponseEntity.ok(estado.get());
@@ -46,9 +46,10 @@ public class EstadoController {
         return estadoService.salvar(estado);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Estado> atualizar(@PathVariable Long id, @RequestBody Estado estado) {
-        Estado estadoAtual = estadoRepository.findById(id).orElse(null);
+    @PutMapping("/{estadoId}")
+    public ResponseEntity<Estado> atualizar(@PathVariable Long estadoId,
+                                            @RequestBody Estado estado) {
+        Estado estadoAtual = estadoRepository.findById(estadoId).orElse(null);
 
         if (estadoAtual != null) {
             BeanUtils.copyProperties(estado, estadoAtual, "id");
@@ -60,10 +61,10 @@ public class EstadoController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> remover(@PathVariable Long id) {
+    @DeleteMapping("/{estadoId}")
+    public ResponseEntity<?> remover(@PathVariable Long estadoId) {
         try {
-            estadoService.excluir(id);
+            estadoService.excluir(estadoId);
             return ResponseEntity.noContent().build();
 
         } catch (EntidadeNaoEncontradaException e) {

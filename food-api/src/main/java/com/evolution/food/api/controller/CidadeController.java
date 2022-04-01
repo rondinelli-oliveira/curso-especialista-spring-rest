@@ -29,9 +29,9 @@ public class CidadeController {
         return cidadeRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Cidade> buscar(@PathVariable Long id) {
-        Optional<Cidade> cidade = cidadeRepository.findById(id);
+    @GetMapping("/{cidadeId}")
+    public ResponseEntity<Cidade> buscar(@PathVariable Long cidadeId) {
+        Optional<Cidade> cidade = cidadeRepository.findById(cidadeId);
 
         if (cidade != null) {
             return ResponseEntity.ok(cidade.get());
@@ -53,13 +53,14 @@ public class CidadeController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Cidade cidade) {
+    @PutMapping("/{cidadeId}")
+    public ResponseEntity<?> atualizar(@PathVariable Long cidadeId,
+                                       @RequestBody Cidade cidade) {
         try {
             // Podemos usar o orElse(null) também, que retorna a instância de cidade
             // dentro do Optional, ou null, caso ele esteja vazio,
             // mas nesse caso, temos a responsabilidade de tomar cuidado com NullPointerException
-            Cidade cidadeAtual = cidadeRepository.findById(id).orElse(null);
+            Cidade cidadeAtual = cidadeRepository.findById(cidadeId).orElse(null);
 
             if (cidadeAtual != null) {
                 BeanUtils.copyProperties(cidade, cidadeAtual, "id");
@@ -76,10 +77,10 @@ public class CidadeController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Cidade> remover(@PathVariable Long id) {
+    @DeleteMapping("/{cidadeId}")
+    public ResponseEntity<Cidade> remover(@PathVariable Long cidadeId) {
         try {
-            cidadeService.excluir(id);
+            cidadeService.excluir(cidadeId);
             return ResponseEntity.noContent().build();
 
         } catch (EntidadeNaoEncontradaException e) {
