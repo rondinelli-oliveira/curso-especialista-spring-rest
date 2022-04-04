@@ -4,6 +4,8 @@ import com.evolution.food.api.domain.model.Cozinha;
 import com.evolution.food.api.domain.model.Restaurante;
 import com.evolution.food.api.domain.repository.CozinhaRepository;
 import com.evolution.food.api.domain.repository.RestauranteRepository;
+import com.evolution.food.api.infrastruture.repository.spec.RestauranteComFreteGratisSpec;
+import com.evolution.food.api.infrastruture.repository.spec.RestauranteComNomeSemelhanteSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,8 +69,7 @@ public class TesteController {
     }
 
     @GetMapping("/restaurantes/por-nome-e-frete")
-    public List<Restaurante> restaurantesPorNomeFrete(String nome,
-                                                      BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal) {
+    public List<Restaurante> restaurantesPorNomeFrete(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal) {
         return restauranteRepository.find(nome, taxaFreteInicial, taxaFreteFinal);
     }
 
@@ -77,5 +78,12 @@ public class TesteController {
         return restauranteRepository.countByCozinhaId(cozinhaId);
     }
 
+    @GetMapping("/restaurantes/com-frete-gratis")
+    public List<Restaurante> restaurantesComFreteGratis(String nome) {
+        var comFreteGratis = new RestauranteComFreteGratisSpec();
+        var comNomeSemelhante = new RestauranteComNomeSemelhanteSpec(nome);
+
+        return restauranteRepository.findAll(comFreteGratis.and(comNomeSemelhante));
+    }
 
 }
