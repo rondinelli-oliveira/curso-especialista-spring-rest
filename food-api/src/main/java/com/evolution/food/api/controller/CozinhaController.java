@@ -1,7 +1,5 @@
 package com.evolution.food.api.controller;
 
-import com.evolution.food.api.domain.exception.EntidadeEmUsoException;
-import com.evolution.food.api.domain.exception.EntidadeNaoEncontradaException;
 import com.evolution.food.api.domain.model.Cozinha;
 import com.evolution.food.api.domain.repository.CozinhaRepository;
 import com.evolution.food.api.domain.service.CozinhaService;
@@ -61,19 +59,25 @@ public class CozinhaController {
         return ResponseEntity.notFound().build();
     }
 
+//    @DeleteMapping("/{cozinhaId}")
+//    public ResponseEntity<?> remover(@PathVariable Long cozinhaId) {
+//        try {
+//            cozinhaService.excluir(cozinhaId);
+//            return ResponseEntity.noContent().build();
+//
+//        } catch (EntidadeNaoEncontradaException e) {
+//            return ResponseEntity.notFound().build();
+//
+//        } catch (EntidadeEmUsoException e) {
+//            return ResponseEntity.status(HttpStatus.CONFLICT)
+//                    .body(e.getMessage());
+//        }
+//    }
+
     @DeleteMapping("/{cozinhaId}")
-    public ResponseEntity<?> remover(@PathVariable Long cozinhaId) {
-        try {
-            cozinhaService.excluir(cozinhaId);
-            return ResponseEntity.noContent().build();
-
-        } catch (EntidadeNaoEncontradaException e) {
-            return ResponseEntity.notFound().build();
-
-        } catch (EntidadeEmUsoException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT)
-                    .body(e.getMessage());
-        }
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable Long cozinhaId) {
+        cozinhaService.excluir(cozinhaId);
     }
 
 }
