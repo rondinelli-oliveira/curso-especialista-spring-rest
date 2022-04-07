@@ -1,5 +1,7 @@
 package com.evolution.food.api.controller;
 
+import com.evolution.food.api.domain.exception.EntidadeNaoEncontradaException;
+import com.evolution.food.api.domain.exception.NegocioException;
 import com.evolution.food.api.domain.model.Cidade;
 import com.evolution.food.api.domain.repository.CidadeRepository;
 import com.evolution.food.api.domain.service.CidadeService;
@@ -33,7 +35,11 @@ public class CidadeController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cidade adicionar(@RequestBody Cidade cidade) {
-        return cidadeService.salvar(cidade);
+        try {
+            return cidadeService.salvar(cidade);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new NegocioException(e.getMessage());
+        }
     }
 
     @PutMapping("/{cidadeId}")
@@ -43,7 +49,11 @@ public class CidadeController {
 
         BeanUtils.copyProperties(cidade, cidadeAtual, "id");
 
-        return cidadeService.salvar(cidadeAtual);
+        try {
+            return cidadeService.salvar(cidadeAtual);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new NegocioException(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{cidadeId}")

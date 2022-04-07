@@ -2,9 +2,11 @@ package com.evolution.food.api.domain.service;
 
 import com.evolution.food.api.domain.exception.EntidadeEmUsoException;
 import com.evolution.food.api.domain.exception.EntidadeNaoEncontradaException;
+import com.evolution.food.api.domain.exception.NegocioException;
 import com.evolution.food.api.domain.model.Cidade;
 import com.evolution.food.api.domain.model.Estado;
 import com.evolution.food.api.domain.repository.CidadeRepository;
+import com.evolution.food.api.domain.repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,10 +25,17 @@ public class CidadeService {
     @Autowired
     private EstadoService estadoService;
 
+    @Autowired
+    private EstadoRepository estadoRepository;
+
     public Cidade salvar(Cidade cidade) {
         Long estadoId = cidade.getEstado().getId();
 
         Estado estado = estadoService.buscarOuFalhar(estadoId);
+
+//        Estado estado = estadoRepository.findById(estadoId)
+//                .orElseThrow(() -> new EntidadeNaoEncontradaException(
+//                        String.format("Não existe cadastro de estado com o código %d.", estadoId)));
 
         cidade.setEstado(estado);
 
