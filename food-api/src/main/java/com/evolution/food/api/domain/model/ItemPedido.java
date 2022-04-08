@@ -28,4 +28,5 @@ public class ItemPedido {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Produto produto;
+
 }

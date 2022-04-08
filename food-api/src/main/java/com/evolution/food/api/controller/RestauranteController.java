@@ -1,5 +1,7 @@
 package com.evolution.food.api.controller;
 
+import com.evolution.food.api.domain.exception.CozinhaNaoEncontradaException;
+import com.evolution.food.api.domain.exception.NegocioException;
 import com.evolution.food.api.domain.model.Restaurante;
 import com.evolution.food.api.domain.repository.RestauranteRepository;
 import com.evolution.food.api.domain.service.RestauranteService;
@@ -37,18 +39,26 @@ public class RestauranteController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Restaurante adicionar(@RequestBody Restaurante restaurante) {
-        return restauranteService.salvar(restaurante);
+        try {
+            return restauranteService.salvar(restaurante);
+        } catch (CozinhaNaoEncontradaException e) {
+            throw new NegocioException(e.getMessage());
+        }
     }
 
     @PutMapping("/{restauranteId}")
     public Restaurante atualizar(@PathVariable Long restauranteId,
                                  @RequestBody Restaurante restaurante) {
-        Restaurante restauranteAtual = restauranteService.buscarOuFalhar(restauranteId);
+        try {
+            Restaurante restauranteAtual = restauranteService.buscarOuFalhar(restauranteId);
 
-        BeanUtils.copyProperties(restaurante, restauranteAtual,
-                "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
+            BeanUtils.copyProperties(restaurante, restauranteAtual,
+                    "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
 
-        return restauranteService.salvar(restauranteAtual);
+            return restauranteService.salvar(restauranteAtual);
+        } catch (CozinhaNaoEncontradaException e) {
+            throw new NegocioException(e.getMessage());
+        }
     }
 
     @PatchMapping("/{restauranteId}")
