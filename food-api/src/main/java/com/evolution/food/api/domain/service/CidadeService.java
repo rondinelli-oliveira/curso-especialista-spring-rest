@@ -2,7 +2,6 @@ package com.evolution.food.api.domain.service;
 
 import com.evolution.food.api.domain.exception.EntidadeEmUsoException;
 import com.evolution.food.api.domain.exception.EntidadeNaoEncontradaException;
-import com.evolution.food.api.domain.exception.NegocioException;
 import com.evolution.food.api.domain.model.Cidade;
 import com.evolution.food.api.domain.model.Estado;
 import com.evolution.food.api.domain.repository.CidadeRepository;
